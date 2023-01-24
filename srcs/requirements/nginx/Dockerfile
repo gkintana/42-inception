@@ -1,13 +1,13 @@
 FROM debian:buster
 
-RUN apt update && apt upgrade -y
-RUN apt install -y nginx
+RUN apt-get update && apt-get upgrade --yes
+RUN apt-get install --yes nginx
 # RUN export PATH=/usr/sbin/:$PATH
 
 COPY index.html /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/sites-available/
 
-# RUN ln -s /etc/nginx/sites-available/ /etc/nginx/sites-enabled/
+RUN ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/nginx.conf
 
 EXPOSE 443
 
