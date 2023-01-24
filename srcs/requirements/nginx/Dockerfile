@@ -1,7 +1,11 @@
 FROM debian:buster
 
-RUN apt-get update && apt-get upgrade --yes
-RUN apt-get install --yes nginx
+ARG DEBIAN_FRONTEND=noninteractive
+ARG DEBCONF_NOWARNINGS="yes"
+
+RUN apt-get update && \
+    apt-get upgrade --yes && \
+    apt-get install --yes nginx
 # RUN export PATH=/usr/sbin/:$PATH
 
 COPY index.html /usr/share/nginx/html
