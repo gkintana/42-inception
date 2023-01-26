@@ -1,6 +1,6 @@
 FROM debian:buster
 
-ARG DEBIAN_FRONTEND=noninteractive
+ARG DEBIAN_FRONTEND="noninteractive"
 ARG DEBCONF_NOWARNINGS="yes"
 
 RUN apt-get update && \
@@ -8,10 +8,10 @@ RUN apt-get update && \
     apt-get install --yes nginx
 # RUN export PATH=/usr/sbin/:$PATH
 
-COPY index.html /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/sites-available/
+# COPY index.html /usr/share/nginx/html
+# COPY nginx.conf /etc/nginx/sites-available/
 
-RUN ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/nginx.conf
+# RUN ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/nginx.conf
 
 EXPOSE 443
 
