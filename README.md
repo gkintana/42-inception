@@ -16,3 +16,8 @@
 - https://stackoverflow.com/questions/29905953/how-to-correctly-link-php-fpm-and-nginx-docker-containers
 - https://www.digitalocean.com/community/tutorials/php-fpm-nginx
 - http://geekyplatypus.com/dockerise-your-php-application-with-nginx-and-php7-fpm/
+- https://business-science.github.io/shiny-production-with-aws-book/https-nginx-docker-compose.html
+- https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/Nginx-PHP-FPM-config-example
+- https://www.educative.io/blog/docker-compose-tutorial
+- https://docs.docker.com/compose/compose-file/
+- https://docs.docker.com/engine/reference/builder/

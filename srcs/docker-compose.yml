@@ -1,0 +1,9 @@
+version: "3.3"
+services:
+  nginx:
+    build: ./requirements/nginx
+    container_name: 42-nginx
+    ports:
+      - "443:443"
+  # wordpress:
+  # mariadb:

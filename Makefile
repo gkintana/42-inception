@@ -1,6 +1,9 @@
 list:
 	@docker image ls
 
+build:
+	docker-compose --file ./srcs/docker-compose.yml up -d
+
 build_nginx:
 	docker build -t 42-nginx ./srcs/requirements/nginx
 
@@ -15,8 +18,11 @@ exec_nginx:
 clean:
 	@docker rmi -f 42-nginx || true
 
-fclean:	clean
-	@docker rmi debian:buster || true
+fclean:
+	docker container rm -f $$(docker container ls -aq)
+	docker image rm -f $$(docker image ls -q)
+# fclean:	clean
+# @docker rmi debian:buster || true
 # docker container prune
 
 rm_none:
