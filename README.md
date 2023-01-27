@@ -13,3 +13,6 @@
 - https://www.harness.io/blog/best-practices-for-docker
 - https://anchore.com/blog/docker-security-best-practices-a-complete-guide/
 - https://blog.aquasec.com/docker-security-best-practices
+- https://stackoverflow.com/questions/29905953/how-to-correctly-link-php-fpm-and-nginx-docker-containers
+- https://www.digitalocean.com/community/tutorials/php-fpm-nginx
+- http://geekyplatypus.com/dockerise-your-php-application-with-nginx-and-php7-fpm/

@@ -7,7 +7,7 @@ build_nginx:
 run_nginx:
 	@docker rm 42-nginx || true
 	@printf "\033[A"
-	docker run --name 42-nginx -p 443:443 42-nginx
+	docker run --name 42-nginx -p 443:443 -p 80:80 42-nginx
 
 exec_nginx:
 	@docker exec -it 42-nginx /bin/bash
