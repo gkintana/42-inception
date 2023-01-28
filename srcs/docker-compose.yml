@@ -1,9 +1,24 @@
 version: "3.3"
 services:
   nginx:
-    build: ./requirements/nginx
     container_name: 42-nginx
+    build: ./requirements/nginx
     ports:
       - "443:443"
+
   # wordpress:
+
   # mariadb:
+  #   container_name: 42-mariadb
+  #   build: ./requirements/mariadb
+  #   ports:
+  #     - "3306:3306"
+  #   environment:
+  #     - MYSQL_ROOT_PASSWORD=password
+  #     - MYSQL_DATABASE=dbname
+  #     - MYSQL_USER=username
+  #     - MYSQL_PASSWORD=password
+  #   env_file:
+  #     - .env
+  #   volumes:
+  #     - mariadb:/var/lib/mysql
