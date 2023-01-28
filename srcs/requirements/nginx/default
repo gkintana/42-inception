@@ -78,13 +78,17 @@ server {
 # to sites-enabled/ to enable it.
 #
 server {
-      listen 443;
-      listen [::]:443;
+      listen 443 ssl default_server;
+      listen [::]:443 ssl default_server;
 
-      server_name test;
+      ssl_certificate /etc/ssl/certs/nginx-selfsigned.crt;
+      ssl_certificate_key /etc/ssl/private/nginx-selfsigned.key;
+      ssl_protocols TLSv1.2 TLSv1.3;
 
       root /usr/share/nginx/html;
       index index.html;
+
+      server_name gkintana.42.fr www.gkintana.42.fr;
 
       location / {
               try_files $uri $uri/ =404;
