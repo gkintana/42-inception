@@ -11,8 +11,10 @@ ENV MYSQL_ROOT_PASSWORD=password \
 RUN apt-get update && \
     apt-get install --yes mariadb-server
 
-RUN service mysql start
-
 # EXPOSE 3306
 
-# CMD ["mysqld"]
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["mariadb"]
