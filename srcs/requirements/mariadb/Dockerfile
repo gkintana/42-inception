@@ -13,8 +13,13 @@ RUN apt-get update && \
 
 # EXPOSE 3306
 
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+COPY initialize_database.sql /
+RUN service mysql start && \
+    mysql -e "$(cat initialize_database.sql)" && \
+    rm initialize_database.sql
 
-ENTRYPOINT ["/entrypoint.sh"]
-CMD ["mariadb"]
+# COPY entrypoint.sh /entrypoint.sh
+# RUN chmod +x /entrypoint.sh
+
+# ENTRYPOINT ["/entrypoint.sh"]
+# CMD ["mariadb"]
