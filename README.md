@@ -21,3 +21,6 @@
 - https://www.educative.io/blog/docker-compose-tutorial
 - https://docs.docker.com/compose/compose-file/
 - https://docs.docker.com/engine/reference/builder/
+- https://medium.com/swlh/wordpress-deployment-with-nginx-php-fpm-and-mariadb-using-docker-compose-55f59e5c1a
+- https://ubuntu.com/tutorials/install-and-configure-wordpress#1-overview
+- https://linuxhostsupport.com/blog/how-to-create-a-new-user-and-grant-permissions-in-mysql/

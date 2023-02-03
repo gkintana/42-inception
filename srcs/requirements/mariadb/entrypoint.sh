@@ -1,4 +1,5 @@
 #!/bin/bash
 service mysql start
-mysql -u root
+# mysql -u root
 # exec "$@"
+mysqld

@@ -19,8 +19,8 @@ clean:
 	@docker rmi -f 42-nginx || true
 
 fclean:
-	docker container rm -f $$(docker container ls -aq)
-	docker image rm -f $$(docker image ls -q)
+	docker container rm -f $$(docker container ls -aq) || true
+	docker image rm -f $$(docker image ls -q) || true
 # fclean:	clean
 # @docker rmi debian:buster || true
 # docker container prune
