@@ -16,9 +16,10 @@ RUN wget http://wordpress.org/latest.tar.gz -P /var/www/html/ && \
     rm -rf /var/www/html/wordpress/ && \
     chown -R www-data:www-data /var/www/html/ && \
     chmod -R 755 /var/www/html/ && \
-	sed -i 's/database_name_here/42_wordpress_db/' /var/www/html/wp-config.php && \
+	sed -i 's/database_name_here/test_db/' /var/www/html/wp-config.php && \
 	sed -i 's/username_here/test_user/' /var/www/html/wp-config.php && \
-	sed -i 's/password_here/password/' /var/www/html/wp-config.php
+	sed -i 's/password_here/password/' /var/www/html/wp-config.php && \
+	sed -i 's/localhost/mariadb:3306/' /var/www/html/wp-config.php
 
 EXPOSE 9000
 
