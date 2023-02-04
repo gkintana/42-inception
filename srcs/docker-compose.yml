@@ -1,37 +1,44 @@
 version: '3.3'
 services:
-  # nginx:
-  #   container_name: 42-nginx
-  #   build: ./requirements/nginx
-  #   ports:
-  #     - "443:443"
+  nginx:
+    container_name: nginx
+    depends_on:
+      - wordpress
+    build: ./requirements/nginx
+    ports:
+      - 443:443
+    volumes:
+      - wordpress:/var/www/html
+    networks:
+      - inception
 
   wordpress:
     container_name: wordpress
-    depends_on:
-      - mariadb
+    # depends_on:
+    #   - mariadb
     build: ./requirements/wordpress
-    ports:
-      - "9000:9000"
+    volumes:
+      - wordpress:/var/www/html
     networks:
       - inception
 
-  mariadb:
-    container_name: mariadb
-    build: ./requirements/mariadb
-    expose:
-      - 3306
-    environment:
-      - MYSQL_ROOT_PASSWORD=password
-      - MYSQL_DATABASE=dbname
-      - MYSQL_USER=username
-      - MYSQL_PASSWORD=password
-    networks:
-      - inception
+  # mariadb:
+  #   container_name: mariadb
+  #   build: ./requirements/mariadb
+  #   environment:
+  #     - MYSQL_ROOT_PASSWORD=password
+  #     - MYSQL_DATABASE=dbname
+  #     - MYSQL_USER=username
+  #     - MYSQL_PASSWORD=password
+  #   networks:
+  #     - inception
     # env_file:
     #   - .env
     # volumes:
     #   - mariadb:/var/lib/mysql
+
+volumes:
+  wordpress:
 
 networks:
   inception:

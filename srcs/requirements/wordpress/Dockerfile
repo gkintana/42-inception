@@ -16,14 +16,18 @@ RUN wget http://wordpress.org/latest.tar.gz -P /var/www/html/ && \
     rm -rf /var/www/html/wordpress/ && \
     chown -R www-data:www-data /var/www/html/ && \
     chmod -R 755 /var/www/html/ && \
-	sed -i 's/database_name_here/test_db/' /var/www/html/wp-config.php && \
-	sed -i 's/username_here/test_user/' /var/www/html/wp-config.php && \
-	sed -i 's/password_here/password/' /var/www/html/wp-config.php && \
-	sed -i 's/localhost/mariadb:3306/' /var/www/html/wp-config.php
+	sed -i 's|listen = /run/php/php7.3-fpm.sock|listen = 0.0.0.0:9000|' /etc/php/7.3/fpm/pool.d/www.conf
 
-EXPOSE 9000
+	# sed -i 's/database_name_here/test_db/' /var/www/html/wp-config.php && \
+	# sed -i 's/username_here/test_user/' /var/www/html/wp-config.php && \
+	# sed -i 's/password_here/password/' /var/www/html/wp-config.php && \
+	# sed -i 's/localhost/mariadb:3306/' /var/www/html/wp-config.php
 
-WORKDIR /var/www/html/
-CMD ["php", "-S", "0.0.0.0:9000"]
+# EXPOSE 9000
+
+# WORKDIR /var/www/html/
+
+RUN mkdir /run/php
+CMD ["php-fpm7.3", "-F"]
 
 # docker run -p 9000:9000 -it test

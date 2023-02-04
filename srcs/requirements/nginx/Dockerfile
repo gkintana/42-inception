@@ -15,18 +15,10 @@ RUN openssl req -x509 -nodes \
     -keyout /etc/ssl/private/nginx-selfsigned.key \
     -out /etc/ssl/certs/nginx-selfsigned.crt;
 
-COPY index.html /usr/share/nginx/html
-COPY default /etc/nginx/sites-enabled/
-COPY nginx.conf /etc/nginx/
-
-# RUN ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/nginx.conf
+# COPY index.html /usr/share/nginx/html
+COPY default /etc/nginx/sites-enabled/default
+# COPY nginx.conf /etc/nginx/
 
 EXPOSE 443
 
 CMD [ "nginx", "-g" ,"daemon off;" ]
-
-# docker run -p 443:443 test
-# docker exec -it <cont_name> /bin/bash
-
-# remove docker images with <none> tags
-# docker images | grep none | awk '{ print $3; }' | xargs docker rmi --force
