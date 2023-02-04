@@ -14,31 +14,32 @@ services:
 
   wordpress:
     container_name: wordpress
-    # depends_on:
-    #   - mariadb
+    depends_on:
+      - mariadb
     build: ./requirements/wordpress
     volumes:
       - wordpress:/var/www/html
     networks:
       - inception
 
-  # mariadb:
-  #   container_name: mariadb
-  #   build: ./requirements/mariadb
-  #   environment:
-  #     - MYSQL_ROOT_PASSWORD=password
-  #     - MYSQL_DATABASE=dbname
-  #     - MYSQL_USER=username
-  #     - MYSQL_PASSWORD=password
-  #   networks:
-  #     - inception
+  mariadb:
+    container_name: mariadb
+    build: ./requirements/mariadb
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=test_db
+      - MYSQL_USER=test_user
+      - MYSQL_PASSWORD=password123
+    networks:
+      - inception
     # env_file:
     #   - .env
-    # volumes:
-    #   - mariadb:/var/lib/mysql
+    volumes:
+      - mariadb:/var/lib/mysql
 
 volumes:
   wordpress:
+  mariadb:
 
 networks:
   inception:
