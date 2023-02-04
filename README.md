@@ -24,3 +24,4 @@
 - https://medium.com/swlh/wordpress-deployment-with-nginx-php-fpm-and-mariadb-using-docker-compose-55f59e5c1a
 - https://ubuntu.com/tutorials/install-and-configure-wordpress#1-overview
 - https://linuxhostsupport.com/blog/how-to-create-a-new-user-and-grant-permissions-in-mysql/
+- https://www.devopsforit.com/posts/setting-up-a-self-signed-ssl-certificate-for-nginx-docker
