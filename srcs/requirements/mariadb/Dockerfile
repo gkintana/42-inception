@@ -3,10 +3,10 @@ FROM debian:buster
 ARG DEBIAN_FRONTEND="noninteractive"
 ARG DEBCONF_NOWARNINGS="yes"
 
-ENV MYSQL_ROOT_PASS="InceptionProject@42"
-ENV MYSQL_DATABASE="wordpress_service_database"
-ENV MYSQL_USER="gkintana"
-ENV MYSQL_PASS="password123"
+ENV MYSQL_ROOT_PASS=
+ENV MYSQL_DATABASE=
+ENV MYSQL_USER=
+ENV MYSQL_PASS=
 
 RUN apt-get update && \
     apt-get install --yes mariadb-server
@@ -19,4 +19,3 @@ RUN chmod +x /tmp/entrypoint.sh
 EXPOSE 3306
 
 ENTRYPOINT ["/tmp/entrypoint.sh"]
-# CMD ["mariadb"]
