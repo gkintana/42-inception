@@ -25,3 +25,6 @@
 - https://ubuntu.com/tutorials/install-and-configure-wordpress#1-overview
 - https://linuxhostsupport.com/blog/how-to-create-a-new-user-and-grant-permissions-in-mysql/
 - https://www.devopsforit.com/posts/setting-up-a-self-signed-ssl-certificate-for-nginx-docker
+- https://stackoverflow.com/questions/14434549/how-to-expand-shell-variables-in-a-text-file
+- https://stackoverflow.com/questions/66443125/how-to-pass-env-arguments-in-my-dockerfile-when-using-docker-compose
+- https://vsupalov.com/docker-arg-env-variable-guide/#arg-and-env-availability
