@@ -2,7 +2,7 @@ list:
 	@docker image ls
 
 build:
-	docker-compose --file ./srcs/docker-compose.yml up -d
+	docker-compose --file ./srcs/docker-compose.yml up
 
 build_nginx:
 	docker build -t 42-nginx ./srcs/requirements/nginx
@@ -19,6 +19,7 @@ clean:
 	@docker rmi -f 42-nginx || true
 
 fclean:
+	docker-compose --file ./srcs/docker-compose.yml down -v
 	docker container rm -f $$(docker container ls -aq) || true
 	docker image rm -f $$(docker image ls -q) || true
 # fclean:	clean
