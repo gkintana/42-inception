@@ -17,6 +17,8 @@ services:
     depends_on:
       - mariadb
     build: ./requirements/wordpress
+    env_file:
+      - .env
     volumes:
       - wordpress:/var/www/html
     networks:
