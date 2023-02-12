@@ -29,3 +29,4 @@
 - https://stackoverflow.com/questions/66443125/how-to-pass-env-arguments-in-my-dockerfile-when-using-docker-compose
 - https://vsupalov.com/docker-arg-env-variable-guide/#arg-and-env-availability
 - https://developer.wordpress.org/cli/commands/theme/install/
+- https://developer.wordpress.org/cli/commands/user/create/
