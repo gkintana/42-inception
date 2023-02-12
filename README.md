@@ -28,3 +28,4 @@
 - https://stackoverflow.com/questions/14434549/how-to-expand-shell-variables-in-a-text-file
 - https://stackoverflow.com/questions/66443125/how-to-pass-env-arguments-in-my-dockerfile-when-using-docker-compose
 - https://vsupalov.com/docker-arg-env-variable-guide/#arg-and-env-availability
+- https://developer.wordpress.org/cli/commands/theme/install/

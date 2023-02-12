@@ -13,6 +13,9 @@ if [ ! -f /var/www/html/wp-config.php ]; then
 
 	echo "Installing WordPress"
 	wp core install --allow-root --url=$WP_URL --title=$WP_TITLE --admin_user=$WP_ADMIN_USER --admin_password=$WP_ADMIN_PASS --admin_email=$WP_ADMIN_EMAIL
+
+	echo "Setting Default Theme to Greenshift"
+	wp theme install greenshift --allow-root --activate
 fi
 
 if [ ! -d /run/php/ ]; then

@@ -71,8 +71,15 @@
 #         #}
 # }
 
+server {
+      listen 80 default_server;
+      listen [::]:80 default_server;
+      server_name gkintana.42.fr www.gkintana.42.fr;
+      return 301 https://$host$request_uri;
+}
 
-# Virtual Host configuration for example.com
+
+# Virtual Host configuration for gkintana.42.fr
 #
 # You can move that to a different file under sites-available/ and symlink that
 # to sites-enabled/ to enable it.
@@ -87,8 +94,6 @@ server {
       ssl_certificate_key /etc/ssl/private/nginx-selfsigned.key;
       ssl_protocols TLSv1.2 TLSv1.3;
 
-    #   root /usr/share/nginx/html;
-    #   index index.html;
       root /var/www/html;
       index index.php index.nginx-debian.html;
 
