@@ -12,13 +12,13 @@ if [ ! -f /var/www/html/wp-config.php ]; then
 	sed -i "s/localhost/$WP_DBHOST/" /var/www/html/wp-config.php
 
 	echo "Installing WordPress"
-	wp core install --url=$WP_URL --title=$WP_TITLE --admin_user=$WP_ADMIN_USER --admin_password=$WP_ADMIN_PASS --admin_email=$WP_ADMIN_EMAIL --allow-root
+	wp core install --url=$DOMAIN_NAME --title=$WP_TITLE --admin_user=$WP_ADMIN_NAME --admin_password=$WP_ADMIN_PASS --admin_email=$WP_ADMIN_EMAIL --allow-root
 
 	echo "Adding Wordpress User"
-	wp user create Bob bob@mywordpress.com --user_pass=WP_User001 --allow-root
+	wp user create $WP_USER_NAME $WP_USER_EMAIL --user_pass=$WP_USER_PASS --allow-root
 
-	echo "Setting Default Theme to Greenshift"
-	wp theme install greenshift --activate --allow-root
+	echo "Setting Theme to $WP_THEME"
+	wp theme install $WP_THEME --activate --allow-root
 fi
 
 if [ ! -d /run/php/ ]; then
