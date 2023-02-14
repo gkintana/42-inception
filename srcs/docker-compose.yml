@@ -37,6 +37,13 @@ services:
     networks:
       - inception
 
+  redis_cache:
+    container_name: redis_cache
+    build: ./requirements/bonus_services/redis_cache
+    restart: on-failure
+    networks:
+      - inception
+
 volumes:
   wordpress:
   mariadb:
