@@ -39,6 +39,8 @@ services:
 
   redis_cache:
     container_name: redis_cache
+    depends_on:
+      - wordpress
     build: ./requirements/bonus_services/redis_cache
     restart: on-failure
     networks:

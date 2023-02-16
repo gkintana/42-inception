@@ -30,3 +30,4 @@
 - https://vsupalov.com/docker-arg-env-variable-guide/#arg-and-env-availability
 - https://developer.wordpress.org/cli/commands/theme/install/
 - https://developer.wordpress.org/cli/commands/user/create/
+- https://stackoverflow.com/questions/42567475/docker-compose-check-if-mysql-connection-is-ready
