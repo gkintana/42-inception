@@ -1,7 +1,6 @@
 #!/bin/bash
 
 if [ ! -f /var/www/html/wp-config.php ]; then
-	wp core download --allow-root --path=/var/www/html/
 	mv wp-config-sample.php wp-config.php
 
 	sed -i 's|listen = /run/php/php7.3-fpm.sock|listen = 0.0.0.0:9000|' /etc/php/7.3/fpm/pool.d/www.conf
@@ -19,10 +18,23 @@ if [ ! -f /var/www/html/wp-config.php ]; then
 
 	echo "Setting Theme to $WP_THEME"
 	wp theme install $WP_THEME --activate --allow-root
+
+	# BONUS
+	wp config set WP_CACHE true --allow-root
+	wp config set WP_CACHE_KEY_SALT $DOMAIN_NAME --allow-root
+	wp config set WP_REDIS_HOST redis_cache --allow-root
+	wp config set WP_REDIS_PORT 6379 --allow-root
+	wp config set WP_REDIS_DATABASE 0 --allow-root
+
+	wp plugin install redis-cache --activate --allow-root
+	wp redis enable --allow-root
 fi
 
 if [ ! -d /run/php/ ]; then
 	mkdir /run/php/
 fi
+
+chown -R www-data:www-data /var/www/html/ && \
+chmod -R 755 /var/www/html/
 
 exec $@

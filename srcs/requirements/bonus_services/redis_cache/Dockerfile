@@ -8,10 +8,12 @@ RUN apt-get update && \
 
 # COPY redis.conf /usr/local/etc/redis/redis.conf
 
-RUN sed -i "s/# maxmemory <bytes>/maxmemory 128M/" /etc/redis/redis.conf && \
+RUN sed -i "s/# maxmemory <bytes>/maxmemory 128mb/" /etc/redis/redis.conf && \
     sed -i "s/# maxmemory-policy noeviction/maxmemory-policy allkeys-lfu/" /etc/redis/redis.conf
 
-CMD [ "redis-server" ]
+EXPOSE 6379
+
+CMD [ "redis-server", "--protected-mode", "no" ]
 # CMD [ "redis-server", "/etc/redis/redis.conf" ]
 # CMD [ "redis-server", "/usr/local/etc/redis/redis.conf" ]
 
