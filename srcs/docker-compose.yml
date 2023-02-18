@@ -7,7 +7,7 @@ services:
     build: ./requirements/nginx
     restart: on-failure
     ports:
-      - 443:443
+      - "443:443"
     volumes:
       - wordpress:/var/www/html
     networks:
@@ -61,7 +61,7 @@ services:
         FTP_PASS: ${FTP_PASS}
     restart: on-failure
     ports:
-      - 21:21
+      - "21:21"
     volumes:
       - wordpress:/var/www/html
     networks:
@@ -74,7 +74,7 @@ services:
     build: ./requirements/bonus_services/adminer
     restart: on-failure
     ports:
-      - 8080:8080
+      - "8080:8080"
     networks:
       - inception
 
@@ -83,7 +83,7 @@ services:
     build: ./requirements/bonus_services/cadvisor
     restart: on-failure
     ports:
-      - 4242:4242
+      - "4242:4242"
     volumes:
       - /:/rootfs:ro
       - /var/run:/var/run:rw
