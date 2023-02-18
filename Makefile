@@ -2,7 +2,7 @@ list:
 	@docker image ls
 
 up:
-	docker-compose --file ./srcs/docker-compose.yml up
+	docker-compose --file ./srcs/docker-compose.yml --env-file srcs/.env up
 
 build_nginx:
 	docker build -t 42-nginx ./srcs/requirements/nginx

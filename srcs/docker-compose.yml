@@ -1,4 +1,4 @@
-version: '3.3'
+version: '3'
 services:
   nginx:
     container_name: nginx
@@ -38,11 +38,28 @@ services:
       - inception
 
   redis_cache:
-    container_name: redis_cache
+    container_name: redis
     depends_on:
       - wordpress
     build: ./requirements/bonus_services/redis_cache
     restart: on-failure
+    networks:
+      - inception
+
+  ftp_server:
+    container_name: vsftpd
+    depends_on:
+      - wordpress
+    build:
+      context: ./requirements/bonus_services/ftp_server
+      args:
+        FTP_USER: ${FTP_USER}
+        FTP_PASS: ${FTP_PASS}
+    restart: on-failure
+    ports:
+      - 21:21
+    volumes:
+      - wordpress:/var/www/html
     networks:
       - inception
 
