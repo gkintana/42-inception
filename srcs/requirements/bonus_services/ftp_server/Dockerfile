@@ -17,7 +17,7 @@ RUN adduser "${FTP_USER}" --disabled-password && \
 	chown "${FTP_USER}:${FTP_USER}" "/home/${FTP_USER}/ftp/files" && \
 	mkdir -p /var/run/vsftpd/empty
 
-COPY ./vsftpd.conf /etc/vsftpd.conf
+COPY ./conf/vsftpd.conf /etc/vsftpd.conf
 
 RUN echo "${FTP_USER}" >> /etc/vsftpd.userlist
 
