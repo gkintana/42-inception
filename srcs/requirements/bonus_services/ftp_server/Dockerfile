@@ -9,8 +9,6 @@ ARG FTP_PASS
 RUN apt-get update && \
     apt-get install --yes vsftpd
 
-RUN echo "${FTP_USER}"
-
 RUN adduser "${FTP_USER}" --disabled-password && \
 	# usermod --password $FTP_PASS $FTP_USER && \
 	echo "${FTP_USER}:${FTP_PASS}" | chpasswd && \

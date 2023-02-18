@@ -15,9 +15,6 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
 
 RUN mkdir -p /var/www/html/
 
-# RUN chown -R www-data:www-data /var/www/html/ && \
-#     chmod -R 755 /var/www/html/
-
 COPY entrypoint.sh /tmp
 RUN chmod +x /tmp/entrypoint.sh
 

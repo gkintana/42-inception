@@ -28,10 +28,14 @@ services:
 
   mariadb:
     container_name: mariadb
-    build: ./requirements/mariadb
+    build:
+      context: ./requirements/mariadb
+      args:
+        MYSQL_ROOT_PASS: ${MYSQL_ROOT_PASS}
+        MYSQL_DATABASE: ${MYSQL_DATABASE}
+        MYSQL_USER: ${MYSQL_USER}
+        MYSQL_PASS: ${MYSQL_PASS}
     restart: on-failure
-    env_file:
-      - .env
     volumes:
       - mariadb:/var/lib/mysql
     networks:
