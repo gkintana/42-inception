@@ -67,6 +67,15 @@ services:
     networks:
       - inception
 
+  static_website:
+    container_name: learning_portfolio
+    build: ./requirements/bonus_services/static_website
+    restart: on-failure
+    ports:
+     - "5500:80"
+    networks:
+      - inception
+
   adminer:
     container_name: adminer
     depends_on:

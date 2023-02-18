@@ -6,7 +6,9 @@ ARG DEBCONF_NOWARNINGS="yes"
 RUN apt-get update && \
     apt-get install --yes apache2
 
-# COPY index.html /var/www/html/
+COPY index.html /var/www/html/
+COPY style.css /var/www/html/
+COPY app.js /var/www/html/
 
 CMD ["apache2ctl", "-D", "FOREGROUND"]
 
