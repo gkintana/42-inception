@@ -15,10 +15,6 @@ RUN openssl req -x509 -nodes \
     -keyout /etc/ssl/private/nginx-selfsigned.key \
     -out /etc/ssl/certs/nginx-selfsigned.crt;
 
-# COPY index.html /usr/share/nginx/html
-COPY default /etc/nginx/sites-enabled/default
-# COPY nginx.conf /etc/nginx/
+COPY ./conf/default /etc/nginx/sites-enabled/default
 
-EXPOSE 443
-
-CMD [ "nginx", "-g" ,"daemon off;" ]
+CMD ["nginx", "-g" ,"daemon off;"]
