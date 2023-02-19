@@ -15,10 +15,11 @@ RUN sed -i "s/#port/port /" /etc/mysql/mariadb.conf.d/50-server.cnf && \
     sed -i "s/127.0.0.1/0.0.0.0/" /etc/mysql/mariadb.conf.d/50-server.cnf
 
 RUN service mysql start && \
-    mysql -e "CREATE DATABASE ${MYSQL_DATABASE}; \
+    mysql -u root -e "CREATE DATABASE ${MYSQL_DATABASE}; \
     CREATE USER '${MYSQL_USER}'@'%' IDENTIFIED BY '${MYSQL_PASS}'; \
     GRANT ALL PRIVILEGES ON ${MYSQL_DATABASE}.* to '${MYSQL_USER}'@'%'; \
-    FLUSH PRIVILEGES;"
+    FLUSH PRIVILEGES; \
+    ALTER USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASS}';"
 
 EXPOSE 3306
 

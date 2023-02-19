@@ -5,7 +5,13 @@ services:
     container_name: nginx
     depends_on:
       - wordpress
-    build: ./requirements/nginx
+    build:
+      context: ./requirements/nginx
+      args:
+        SSL_C: ${SSL_C}
+        SSL_ST: ${SSL_ST}
+        SSL_O: ${SSL_O}
+        DOMAIN_NAME: ${DOMAIN_NAME}
     restart: on-failure
     ports:
       - "443:443"
