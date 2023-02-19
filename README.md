@@ -31,3 +31,4 @@
 - https://developer.wordpress.org/cli/commands/theme/install/
 - https://developer.wordpress.org/cli/commands/user/create/
 - https://stackoverflow.com/questions/42567475/docker-compose-check-if-mysql-connection-is-ready
+- https://stackoverflow.com/questions/36387032/how-to-set-a-path-on-host-for-a-named-volume-in-docker-compose-yml

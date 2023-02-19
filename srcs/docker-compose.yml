@@ -16,7 +16,7 @@ services:
     ports:
       - "443:443"
     volumes:
-      - wordpress:/var/www/html
+      - wordpress_volume:/var/www/html
     networks:
       - inception
 
@@ -29,7 +29,7 @@ services:
     env_file:
       - .env
     volumes:
-      - wordpress:/var/www/html
+      - wordpress_volume:/var/www/html
     networks:
       - inception
 
@@ -44,12 +44,12 @@ services:
         MYSQL_PASS: ${MYSQL_PASS}
     restart: on-failure
     volumes:
-      - mariadb:/var/lib/mysql
+      - mariadb_volume:/var/lib/mysql
     networks:
       - inception
 
   redis_cache:
-    container_name: redis
+    container_name: redis_cache
     depends_on:
       - wordpress
     build: ./requirements/bonus_services/redis_cache
@@ -58,7 +58,7 @@ services:
       - inception
 
   ftp_server:
-    container_name: vsftpd
+    container_name: ftp_server
     depends_on:
       - wordpress
     build:
@@ -70,12 +70,12 @@ services:
     ports:
       - "21:21"
     volumes:
-      - wordpress:/var/www/html
+      - wordpress_volume:/var/www/html
     networks:
       - inception
 
   static_website:
-    container_name: learning_portfolio
+    container_name: static_website
     build: ./requirements/bonus_services/static_website
     restart: on-failure
     ports:
@@ -109,8 +109,18 @@ services:
       - inception
 
 volumes:
-  wordpress:
-  mariadb:
+  wordpress_volume:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/${USER}/data/wordpress_volume
+  mariadb_volume:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/${USER}/data/mariadb_volume
 
 networks:
   inception:
