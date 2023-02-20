@@ -22,9 +22,9 @@ if [ ! -f /var/www/html/wp-config.php ]; then
 	# BONUS
 	wp config set WP_CACHE true --allow-root
 	wp config set WP_CACHE_KEY_SALT $DOMAIN_NAME --allow-root
-	wp config set WP_REDIS_HOST redis_cache --allow-root
-	wp config set WP_REDIS_PORT 6379 --allow-root
-	wp config set WP_REDIS_DATABASE 0 --allow-root
+	wp config set WP_REDIS_HOST $REDIS_HOST --allow-root
+	wp config set WP_REDIS_PORT $REDIS_PORT --allow-root
+	wp config set WP_REDIS_DATABASE $REDIS_DATABASE --allow-root
 
 	wp plugin install redis-cache --activate --allow-root
 	wp redis enable --allow-root
