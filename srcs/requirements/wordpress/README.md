@@ -1,4 +1,4 @@
-##References
+## References
 - https://ubuntu.com/tutorials/install-and-configure-wordpress#1-overview
 - https://www.digitalocean.com/community/tutorials/install-wordpress-on-ubuntu
 - https://wordpress.org/documentation/article/get-started-with-wordpress/
