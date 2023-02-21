@@ -37,4 +37,11 @@ fi
 chown -R www-data:www-data /var/www/html/ && \
 chmod -R 755 /var/www/html/
 
+if [ ! -d /var/www/html/ftp_files ]; then
+	mkdir /var/www/html/ftp_files
+	adduser "${FTP_USER}" --disabled-password && \
+	echo "${FTP_USER}:${FTP_PASS}" | chpasswd && \
+	chown -R ${FTP_USER}:${FTP_USER} /var/www/html/ftp_files
+fi
+
 exec $@
