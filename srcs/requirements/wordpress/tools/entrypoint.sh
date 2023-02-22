@@ -22,6 +22,7 @@ if [ ! -f /var/www/html/wp-config.php ]; then
 	echo "Setting Theme to $WP_THEME"
 	wp theme install $WP_THEME --activate --allow-root
 
+	# FTP SERVER
 	if [ ! -d /var/www/html/ftp_files ]; then
 		mkdir /var/www/html/ftp_files
 		adduser "${FTP_USER}" --disabled-password && \
@@ -29,7 +30,7 @@ if [ ! -f /var/www/html/wp-config.php ]; then
 		chown -R ${FTP_USER}:${FTP_USER} /var/www/html/ftp_files
 	fi
 
-	# BONUS
+	# REDIS CACHE
 	wp config set WP_CACHE true --allow-root
 	wp config set WP_CACHE_KEY_SALT $DOMAIN_NAME --allow-root
 	wp config set WP_REDIS_HOST $REDIS_HOST --allow-root
