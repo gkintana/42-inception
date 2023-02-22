@@ -3,6 +3,9 @@
 if [ ! -f /var/www/html/wp-config.php ]; then
 	mv wp-config-sample.php wp-config.php
 
+	chown -R www-data:www-data /var/www/html/
+	chmod -R 755 /var/www/html/
+
 	sed -i 's|listen = /run/php/php7.3-fpm.sock|listen = 0.0.0.0:9000|' /etc/php/7.3/fpm/pool.d/www.conf
 
 	sed -i "s/database_name_here/$WP_DBNAME/" /var/www/html/wp-config.php && \
@@ -19,6 +22,13 @@ if [ ! -f /var/www/html/wp-config.php ]; then
 	echo "Setting Theme to $WP_THEME"
 	wp theme install $WP_THEME --activate --allow-root
 
+	if [ ! -d /var/www/html/ftp_files ]; then
+		mkdir /var/www/html/ftp_files
+		adduser "${FTP_USER}" --disabled-password && \
+		echo "${FTP_USER}:${FTP_PASS}" | chpasswd && \
+		chown -R ${FTP_USER}:${FTP_USER} /var/www/html/ftp_files
+	fi
+
 	# BONUS
 	wp config set WP_CACHE true --allow-root
 	wp config set WP_CACHE_KEY_SALT $DOMAIN_NAME --allow-root
@@ -32,16 +42,6 @@ fi
 
 if [ ! -d /run/php/ ]; then
 	mkdir /run/php/
-fi
-
-chown -R www-data:www-data /var/www/html/ && \
-chmod -R 755 /var/www/html/
-
-if [ ! -d /var/www/html/ftp_files ]; then
-	mkdir /var/www/html/ftp_files
-	adduser "${FTP_USER}" --disabled-password && \
-	echo "${FTP_USER}:${FTP_PASS}" | chpasswd && \
-	chown -R ${FTP_USER}:${FTP_USER} /var/www/html/ftp_files
 fi
 
 exec $@

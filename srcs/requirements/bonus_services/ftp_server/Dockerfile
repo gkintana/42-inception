@@ -11,7 +11,6 @@ RUN apt-get update && \
 
 RUN adduser "${FTP_USER}" --disabled-password && \
 	echo "${FTP_USER}:${FTP_PASS}" | chpasswd && \
-	mkdir -p /var/www/html/ftp_files && \
 	mkdir -p /var/run/vsftpd/empty
 
 COPY ./conf/vsftpd.conf /etc/vsftpd.conf
