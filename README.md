@@ -20,6 +20,7 @@
 - https://stackoverflow.com/questions/36387032/how-to-set-a-path-on-host-for-a-named-volume-in-docker-compose-yml
 
 ### NGINX
+- https://hub.docker.com/_/nginx
 - http://nginx.org/en/docs/
 - https://towardsaws.com/how-to-create-custom-nginx-docker-image-94c6bd4be29
 - http://geekyplatypus.com/dockerise-your-php-application-with-nginx-and-php7-fpm/
@@ -29,8 +30,7 @@
 - https://stackoverflow.com/questions/29905953/how-to-correctly-link-php-fpm-and-nginx-docker-containers
 
 ### WordPress
-- https://ubuntu.com/tutorials/install-and-configure-wordpress#1-overview
-- https://www.digitalocean.com/community/tutorials/install-wordpress-on-ubuntu
+- https://hub.docker.com/_/wordpress
 - https://wordpress.org/documentation/article/get-started-with-wordpress/
 - https://wordpress.org/documentation/article/how-to-install-wordpress/
 - https://developer.wordpress.org/cli/commands/
@@ -38,16 +38,22 @@
 - https://developer.wordpress.org/cli/commands/user/create/
 - https://wordpress.org/themes/
 - https://developer.wordpress.org/cli/commands/theme/install/
+- https://ubuntu.com/tutorials/install-and-configure-wordpress#1-overview
+- https://www.digitalocean.com/community/tutorials/install-wordpress-on-ubuntu
 
 ### MariaDB
+- https://hub.docker.com/_/mariadb
+- https://mariadb.com/kb/en/a-mariadb-primer/
 - https://linuxhostsupport.com/blog/how-to-create-a-new-user-and-grant-permissions-in-mysql/
 - https://stackoverflow.com/questions/42567475/docker-compose-check-if-mysql-connection-is-ready
 
 ### Redis
+- https://redis.io/docs/
 - https://www.youtube.com/watch?v=JrrSYypaXk4
 
 ### FTP Server
 - https://www.digitalocean.com/community/tutorials/how-to-set-up-vsftpd-for-a-user-s-directory-on-ubuntu-20-04
+- https://docs.rockylinux.org/guides/file_sharing/secure_ftp_server_vsftpd/
 
 ### Static Website
 - https://ubuntu.com/tutorials/install-and-configure-apache#1-overview
