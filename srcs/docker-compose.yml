@@ -1,5 +1,3 @@
-version: '3.3'
-
 services:
   nginx:
     container_name: nginx
@@ -45,68 +43,6 @@ services:
     restart: on-failure
     volumes:
       - mariadb_volume:/var/lib/mysql
-    networks:
-      - inception
-
-  redis_cache:
-    container_name: redis_cache
-    depends_on:
-      - wordpress
-    build: ./requirements/bonus_services/redis_cache
-    restart: on-failure
-    networks:
-      - inception
-
-  ftp_server:
-    container_name: ftp_server
-    depends_on:
-      - wordpress
-    build:
-      context: ./requirements/bonus_services/ftp_server
-      args:
-        FTP_USER: ${FTP_USER}
-        FTP_PASS: ${FTP_PASS}
-    restart: on-failure
-    env_file:
-      - .env
-    ports:
-      - "21:21"
-    volumes:
-      - wordpress_volume:/var/www/html
-    networks:
-      - inception
-
-  static_website:
-    container_name: static_website
-    build: ./requirements/bonus_services/static_website
-    restart: on-failure
-    ports:
-     - "5500:80"
-    networks:
-      - inception
-
-  adminer:
-    container_name: adminer
-    depends_on:
-      - mariadb
-    build: ./requirements/bonus_services/adminer
-    restart: on-failure
-    ports:
-      - "8080:8080"
-    networks:
-      - inception
-
-  cadvisor:
-    container_name: cadvisor
-    build: ./requirements/bonus_services/cadvisor
-    restart: on-failure
-    ports:
-      - "4242:8080"
-    volumes:
-      - /:/rootfs:ro
-      - /var/run:/var/run:rw
-      - /sys:/sys:ro
-      - /var/lib/docker/:/var/lib/docker:ro
     networks:
       - inception
 
