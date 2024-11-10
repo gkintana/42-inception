@@ -1,10 +1,10 @@
 up:
 	mkdir -p /home/${USER}/data/mariadb_volume
 	mkdir -p /home/${USER}/data/wordpress_volume
-	docker-compose --file ./srcs/docker-compose.yml --env-file srcs/.env up
+	docker compose --file ./srcs/docker-compose.yml --env-file srcs/.env up
 
 down:
-	docker-compose --file ./srcs/docker-compose.yml down -v
+	docker compose --file ./srcs/docker-compose.yml down -v
 
 hosts:
 	@sudo sed -i "3s|.*|$$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' nginx)    gkintana.42.fr|" /etc/hosts
