@@ -1,4 +1,4 @@
-FROM phpmyadmin:latest
+FROM phpmyadmin:5.2.1-apache
 
 ENV PMA_HOST=mariadb
 ENV PMA_PORT=3306

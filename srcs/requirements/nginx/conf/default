@@ -1,9 +1,9 @@
-# Virtual Host configuration for gkintana.42.fr
+# Virtual Host configuration for cloud1.42ad.ae
 server {
       listen 443 ssl;
       listen [::]:443 ssl;
 
-      server_name gkintana.42.fr www.gkintana.42.fr;
+      server_name cloud1.42ad.ae www.cloud1.42ad.ae;
 
       ssl_certificate /etc/ssl/certs/nginx-selfsigned.crt;
       ssl_certificate_key /etc/ssl/private/nginx-selfsigned.key;
