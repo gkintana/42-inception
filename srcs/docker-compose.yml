@@ -37,6 +37,10 @@ services:
       - mariadb
     build:
       context: ./requirements/phpmyadmin
+    environment:
+      PMA_HOST: ${PMA_HOST}
+      PMA_PORT: ${PMA_PORT}
+      PMA_SSL: ${PMA_SSL}
     restart: on-failure
     ports:
       - "8080:80"
@@ -64,13 +68,13 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /home/${USER}/data/wordpress_volume
+      device: ../data/wordpress_volume
   mariadb_volume:
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: /home/${USER}/data/mariadb_volume
+      device: ../data/mariadb_volume
 
 networks:
   inception:

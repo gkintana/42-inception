@@ -13,14 +13,16 @@ if [ ! -f /var/www/html/wp-config.php ]; then
 	sed -i "s/password_here/$WP_DBPASS/" /var/www/html/wp-config.php && \
 	sed -i "s/localhost/$WP_DBHOST/" /var/www/html/wp-config.php
 
+	echo "define('MYSQL_SSL_KEY', '/etc/ssl/certs/client-key.pem');" >> /var/www/html/wp-config.php
+	echo "define('MYSQL_SSL_CERT', '/etc/ssl/certs/client-cert.pem');" >> /var/www/html/wp-config.php
+	echo "define('MYSQL_SSL_CA', '/etc/ssl/certs/ca-cert.pem');" >> /var/www/html/wp-config.php
+	echo "define('MYSQL_CLIENT_FLAGS', MYSQLI_CLIENT_SSL);" >> /var/www/html/wp-config.php
+
 	echo "Installing WordPress"
 	wp core install --url=$DOMAIN_NAME --title=$WP_TITLE --admin_user=$WP_ADMIN_NAME --admin_password=$WP_ADMIN_PASS --admin_email=$WP_ADMIN_EMAIL --allow-root
 
 	echo "Adding Wordpress User"
 	wp user create $WP_USER_NAME $WP_USER_EMAIL --user_pass=$WP_USER_PASS --allow-root
-
-	echo "Setting Theme to $WP_THEME"
-	wp theme install $WP_THEME --activate --allow-root
 fi
 
 if [ ! -d /run/php/ ]; then
