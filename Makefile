@@ -9,9 +9,6 @@ up:	setup directories certificates
 	docker compose --file ./srcs/docker-compose.yml --env-file srcs/.env up --detach
 
 setup:
-	@if [ "${USER}" != "$$(stat -c %U .)" ]; then \
-		sudo chown -R ${USER}:${USER} .; \
-	fi
 	@if ! grep -q "DOMAIN_NAME=" ./srcs/.env; then \
 		sed -i "1s|^|DOMAIN_NAME=$$(curl -s ifconfig.me)\n\n|" ./srcs/.env; \
 	fi
@@ -19,6 +16,7 @@ setup:
 directories:
 	@if ! docker volume inspect srcs_mariadb_volume > /dev/null 2>&1 && ! docker volume inspect srcs_wordpress_volume > /dev/null 2>&1; then \
 		mkdir -p $(VOLUME_MARIADB) $(VOLUME_WORDPRESS) $(CERTS_MARIADB) $(CERTS_WORDPRESS) $(CERTS_PHPMYADMIN); \
+		chmod 755 $(VOLUME_MARIADB) $(VOLUME_WORDPRESS); \
 	fi
 
 certificates:	generate_certificates
@@ -57,8 +55,7 @@ clean:	down
 	docker container rm -f $$(docker container ls -aq) || true
 	docker image rm -f $$(docker image ls -q) || true
 	docker volume rm $$(docker volume ls -q) || true
-	sudo rm -rf ${VOLUMES}
-	rm -rf $(CERTS_MARIADB) $(CERTS_WORDPRESS) $(CERTS_PHPMYADMIN)
+	sudo rm -rf ${VOLUMES} $(CERTS_MARIADB) $(CERTS_WORDPRESS) $(CERTS_PHPMYADMIN)
 
 re:	clean up
 
