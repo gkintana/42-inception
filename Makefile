@@ -42,9 +42,6 @@ generate_certificates:
 down:
 	docker compose --file ./srcs/docker-compose.yml down -v
 
-hosts:
-	@sudo sed -i "3s|.*|$$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' nginx)    cloud1.42ad.ae|" /etc/hosts
-
 clean:	down
 	docker container rm -f $$(docker container ls -aq) || true
 	docker image rm -f $$(docker image ls -q) || true

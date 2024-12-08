@@ -1,4 +1,4 @@
-FROM debian:buster
+FROM debian:12.8
 
 ARG DEBIAN_FRONTEND="noninteractive"
 ARG DEBCONF_NOWARNINGS="yes"
@@ -29,4 +29,4 @@ RUN wp core download --allow-root
 EXPOSE 9000
 
 ENTRYPOINT ["/tmp/entrypoint.sh"]
-CMD ["php-fpm7.3", "-F"]
+CMD ["php-fpm8.2", "-F"]

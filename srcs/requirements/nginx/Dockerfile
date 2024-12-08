@@ -1,4 +1,4 @@
-FROM debian:buster
+FROM debian:12.8
 
 ARG DEBIAN_FRONTEND="noninteractive"
 ARG DEBCONF_NOWARNINGS="yes"
@@ -9,16 +9,18 @@ ARG SSL_O
 ARG DOMAIN_NAME
 
 RUN apt-get update && \
-    apt-get install --yes nginx \
-                          openssl
+	apt-get install --yes nginx \
+	openssl
 
 RUN openssl req -x509 -nodes \
-    -days 365 \
-    -subj "/C=${SSL_C}/ST=${SSL_ST}/O=${SSL_O}/CN=${DOMAIN_NAME}" \
-    -newkey rsa:2048 \
-    -keyout /etc/ssl/private/nginx-selfsigned.key \
-    -out /etc/ssl/certs/nginx-selfsigned.crt;
+	-days 365 \
+	-subj "/C=${SSL_C}/ST=${SSL_ST}/O=${SSL_O}/CN=${DOMAIN_NAME}" \
+	-newkey rsa:2048 \
+	-keyout /etc/ssl/private/nginx-selfsigned.key \
+	-out /etc/ssl/certs/nginx-selfsigned.crt;
 
 COPY ./conf/default /etc/nginx/sites-enabled/default
+
+RUN sed -i "s|env_server_name|$DOMAIN_NAME|" /etc/nginx/sites-enabled/default
 
 CMD ["nginx", "-g" ,"daemon off;"]

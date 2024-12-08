@@ -1,4 +1,4 @@
-FROM debian:bookworm-20241202
+FROM debian:12.8
 
 ARG DEBIAN_FRONTEND="noninteractive"
 ARG DEBCONF_NOWARNINGS="yes"
