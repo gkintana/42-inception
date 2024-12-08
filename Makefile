@@ -30,13 +30,13 @@ certificates:	generate_certificates
 generate_certificates:
 	@if ! docker volume inspect srcs_mariadb_volume > /dev/null 2>&1 && ! docker volume inspect srcs_wordpress_volume > /dev/null 2>&1; then \
 		openssl genrsa 2048 > ca-key.pem; \
-		openssl req -new -x509 -nodes -days 365000 -subj "/CN=mariadb-auth" -key ca-key.pem -out ca-cert.pem; \
-		openssl req -newkey rsa:2048 -days 365000 -subj "/CN=mariadb" -nodes -keyout server-key.pem -out server-req.pem; \
+		openssl req -new -x509 -nodes -days 365 -subj "/CN=mariadb-auth" -key ca-key.pem -out ca-cert.pem; \
+		openssl req -newkey rsa:2048 -subj "/CN=mariadb" -nodes -keyout server-key.pem -out server-req.pem; \
 		openssl rsa -in server-key.pem -out server-key.pem; \
-		openssl x509 -req -in server-req.pem -days 365000 -CA ca-cert.pem -CAkey ca-key.pem -set_serial 01 -out server-cert.pem; \
-		openssl req -newkey rsa:2048 -days 365000 -subj "/CN=mariadb" -nodes -keyout client-key.pem -out client-req.pem; \
+		openssl x509 -req -in server-req.pem -days 365 -CA ca-cert.pem -CAkey ca-key.pem -set_serial 01 -out server-cert.pem; \
+		openssl req -newkey rsa:2048 -subj "/CN=mariadb" -nodes -keyout client-key.pem -out client-req.pem; \
 		openssl rsa -in client-key.pem -out client-key.pem; \
-		openssl x509 -req -in client-req.pem -days 365000 -CA ca-cert.pem -CAkey ca-key.pem -set_serial 01 -out client-cert.pem; \
+		openssl x509 -req -in client-req.pem -days 365 -CA ca-cert.pem -CAkey ca-key.pem -set_serial 01 -out client-cert.pem; \
 	fi
 
 down:

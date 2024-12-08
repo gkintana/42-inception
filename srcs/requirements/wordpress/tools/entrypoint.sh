@@ -25,7 +25,6 @@ if [ ! -f /var/www/html/wp-config.php ]; then
 	wp user create $WP_USER_NAME $WP_USER_EMAIL --user_pass=$WP_USER_PASS --allow-root
 
 	wp theme install $WP_THEME --activate --allow-root
-	wp plugin install gutenverse --activate --allow-root
 fi
 
 if [ ! -d /run/php/ ]; then
